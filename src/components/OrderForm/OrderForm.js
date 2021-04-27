@@ -27,7 +27,11 @@ class OrderForm extends Component {
   handleIngredientChange = (e) => {
     e.preventDefault()
     let selectedIngredients = this.state.ingredients
-    if (!selectedIngredients.includes(e.target.name)) selectedIngredients.push(e.target.name)
+    if (!selectedIngredients.includes(e.target.name)) {
+      selectedIngredients.push(e.target.name)
+    } else {
+      selectedIngredients.splice(selectedIngredients.indexOf(e.target.name), 1)
+    }
     this.setState({ ingredients: selectedIngredients })
   }
 
