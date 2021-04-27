@@ -16,6 +16,7 @@ class OrderForm extends Component {
       ingredients: this.state.ingredients
     }
     this.props.placeOrder(newOrder)
+    this.clearInputs()
   }
 
   clearInputs = () => {
