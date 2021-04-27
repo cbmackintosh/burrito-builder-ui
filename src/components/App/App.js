@@ -16,15 +16,13 @@ class App extends Component {
   componentDidMount() {
     getOrders()
       .then(data => this.setState({ orders: data.orders }))
-      .catch(err => console.error('Error fetching:', err));
+      .catch(err => this.setState({ error: 'There was a problem retrieving orders' }));
   }
 
   submitNewOrder = (newOrder) => {
-    console.log(newOrder)
     placeOrder(newOrder)
     .then(result => {
-      console.log(result)
-      if (result.id) {
+      if (result.name && result.ingredients.length) {
         this.setState({ orders: [...this.state.orders, result], error: '' })
       } else {
         this.setState({ error: 'Please enter a name and select at least one ingredient' })
