@@ -20,10 +20,12 @@ class App extends Component {
   }
 
   submitNewOrder = (newOrder) => {
+    console.log(newOrder)
     placeOrder(newOrder)
     .then(result => {
+      console.log(result)
       if (result.id) {
-        this.setState({ orders: [...this.state.orders, result], error: ''})
+        this.setState({ orders: [...this.state.orders, result], error: '' })
       } else {
         this.setState({ error: 'Please enter a name and select at least one ingredient' })
       }
@@ -31,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <main className="App">
         <header>

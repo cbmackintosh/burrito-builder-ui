@@ -12,12 +12,10 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const newOrder = {
-      id: Date.now(),
       name: this.state.name,
       ingredients: this.state.ingredients
     }
     this.props.placeOrder(newOrder)
-    this.clearInputs();
   }
 
   clearInputs = () => {
@@ -40,7 +38,6 @@ class OrderForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (

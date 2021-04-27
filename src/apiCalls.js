@@ -4,10 +4,11 @@ export const getOrders = () => {
 }
 
 export const placeOrder = (newOrder) => {
+  console.log(newOrder)
   return fetch('http://localhost:3002/api/v1/orders', {
     method: 'POST',
     headers: {
-      "Content-Type": "application/jsoon"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(newOrder)
   })
