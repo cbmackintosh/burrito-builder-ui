@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 
 class OrderForm extends Component {
-  constructor(props) {
+  constructor() {
     super();
-    this.props = props;
     this.state = {
       name: '',
       ingredients: []
     };
   }
 
-
   handleSubmit = e => {
     e.preventDefault();
+    const newOrder = {
+      id: Date.now(),
+      name: this.state.name,
+      ingredients: this.state.ingredients
+    }
+    this.props.placeOrder(newOrder)
     this.clearInputs();
   }
 

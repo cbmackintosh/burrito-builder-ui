@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getOrders} from '../../apiCalls';
+import { getOrders, placeOrder } from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
 
 class App extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
-      orders: []
+      orders: [],
+      error: ''
     }
   }
 
@@ -18,16 +19,28 @@ class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
+  submitNewOrder = (newOrder) => {
+    placeOrder(newOrder)
+    .then(result => {
+      if (result.id) {
+        this.setState({ orders: [...this.state.orders, result], error: ''})
+      } else {
+        this.setState({ error: 'Please enter a name and select at least one ingredient' })
+      }
+    })
+  }
+
   render() {
     console.log(this.state)
     return (
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm />
+          <OrderForm placeOrder={this.submitNewOrder} />
+          {this.state.error && <p className='error-message'>{this.state.error}</p>}
         </header>
 
-        <Orders orders={this.state.orders}/>
+        <Orders orders={this.state.orders} />
       </main>
     );
   }
