@@ -1,7 +1,7 @@
 import React from 'react';
 import './Orders.css';
 
-const Orders = props => {
+const Orders = ({ props }) => {
   const orderEls = props.orders.map(order => {
     return (
       <div className="order">
