@@ -14,11 +14,12 @@ class App extends Component {
 
   componentDidMount() {
     getOrders()
-      .then(orders => this.setState({ orders: orders }))
+      .then(data => this.setState({ orders: data.orders }))
       .catch(err => console.error('Error fetching:', err));
   }
 
   render() {
+    console.log(this.state)
     return (
       <main className="App">
         <header>
